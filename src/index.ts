@@ -110,7 +110,7 @@ export interface DataCollectionSchema {
     title?: string;
 
     /** The data type. */
-    type: 'string' | 'number' | 'boolean' | 'date' | 'array' | 'object';
+    type: 'string' | 'number' | 'boolean' | 'date' | 'array' | 'object' | 'asset' | 'image' | 'video' | 'location';
 
     /** Schemas of the object properties. Use when `type` is 'object'. */
     properties?: {[property: string]: DataCollectionSchema};
