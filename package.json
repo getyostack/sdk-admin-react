@@ -1,6 +1,6 @@
 {
   "name": "@yostack/sdk-admin-react",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "YoStack admin SDK.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
