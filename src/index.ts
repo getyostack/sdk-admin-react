@@ -19,6 +19,7 @@ export interface AppInitContext<Settings = any> {
      * @param id A unique identifier.
      * @param component A React component to be used to render the editor.
      * @param options Additional options.
+     * @returns true, if the registration succeeded.
      */
     registerConfigFieldEditor: (id: string, component: Function, options?: EditorOptions) => boolean;
 
@@ -26,8 +27,9 @@ export interface AppInitContext<Settings = any> {
      * Function to register a service, which will be provided to registered config field editors.
      *
      * @param service An app-specific service instance.
+     * @returns true, if the registration succeeded.
      */
-    registerService: (service: any) => boolean;
+    registerService: (service: (appContext: AppContext<Settings>) => void) => boolean;
 
     /**
      * Function to register a data provider.
@@ -37,6 +39,7 @@ export interface AppInitContext<Settings = any> {
      * @param collectionSchemas An array of schemas that describe the collections.
      *                          Can be an empty array if `options.getCollections` is provided.
      * @param options Additional options.
+     * @returns true, if the registration succeeded.
      */
     registerDataProvider: (dataProviderId: string, name: string, collectionSchemas: DataCollectionSchema[],
                            options?: DataProviderOptions) => boolean;
@@ -66,7 +69,7 @@ export interface AppInitContext<Settings = any> {
 
 }
 
-export interface DataProviderOptions {
+export interface DataProviderOptions<Settings = any> {
     /**
      * Set to show a different label than "Collection" (e.g. "Data Type", "Content Type", "Base", "Model").
      */
@@ -78,7 +81,7 @@ export interface DataProviderOptions {
      *
      * @returns A promise with an array of collection schemas.
      */
-    getCollections?: (appContext: AppContext) => Promise<DataCollectionSchema[]>;
+    getCollections?: (appContext: AppContext<Settings>) => Promise<DataCollectionSchema[]>;
 
     /**
      * Function to dynamically provide additional collection schema details for the given collection schema.
@@ -89,7 +92,7 @@ export interface DataProviderOptions {
      * @param schema The schema of the selected collection.
      * @returns A promise with the complete collection schema.
      */
-    getCollectionDetails?: (schema: DataCollectionSchema, appContext: AppContext) => Promise<DataCollectionSchema>;
+    getCollectionDetails?: (schema: DataCollectionSchema, appContext: AppContext<Settings>) => Promise<DataCollectionSchema>;
 
 }
 
