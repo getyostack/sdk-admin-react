@@ -1,6 +1,6 @@
 {
   "name": "@yostack/sdk-admin-react",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "YoStack admin SDK.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,7 +14,7 @@
   "author": "YoStack",
   "license": "UNLICENSED",
   "peerDependencies": {
-    "react": "^17.0.2"
+    "react": "^18.1.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
