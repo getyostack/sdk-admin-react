@@ -101,6 +101,18 @@ export interface AppContext<Settings = any> {
     makeServerSideRequest: <T = any>(id: string, variables: {[name: string]: string}) => Promise<T>;
 }
 
+export type SupportedDataSchemaType = 'string' | 'number' | 'boolean' | 'date' | 'array' | 'object' | 'asset' | 'image' | 'video' | 'location';
+
+export interface ExtraConfigOption {
+    name: string;
+    displayName: string;
+    description?: string;
+    type: string;
+    options?: Array<{name: string; value: string}>;
+    defaultValue?: any;
+    editor?: string;
+    hideCondition?: string; // JavaScript expression to be evaluated, e.g. `config.url && config.altText`
+}
 /**
  * The data collection schema provides meta data, such as the collection title, as well as,
  * defines the collection's expected response data structure.
@@ -113,7 +125,7 @@ export interface DataCollectionSchema {
     title?: string;
 
     /** The data type. */
-    type: 'string' | 'number' | 'boolean' | 'date' | 'array' | 'object' | 'asset' | 'image' | 'video' | 'location';
+    type: SupportedDataSchemaType;
 
     /** Schemas of the object properties. Use when `type` is 'object'. */
     properties?: {[property: string]: DataCollectionSchema};
@@ -122,16 +134,7 @@ export interface DataCollectionSchema {
     items?: {[property: string]: DataCollectionSchema};
 
     /** Extra configuration options to be shown when the collection is selected. */
-    extraConfigOptions?: Array<{
-        name: string;
-        displayName: string;
-        description?: string;
-        type: string;
-        options?: Array<{name: string; value: string}>;
-        defaultValue?: any;
-        editor?: string;
-        hideCondition?: string; // JavaScript expression to be evaluated, e.g. `config.url && config.altText`
-    }>;
+    extraConfigOptions?: Array<ExtraConfigOption>;
 }
 
 export interface ComponentConfigFieldEditor {
