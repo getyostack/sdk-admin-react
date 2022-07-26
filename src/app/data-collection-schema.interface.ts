@@ -10,7 +10,7 @@ export interface DataCollectionSchema {
     title?: string;
 
     /** The data type. */
-    type: 'string' | 'number' | 'boolean' | 'date' | 'array' | 'object' | 'asset' | 'image' | 'video' | 'location';
+    type: DataCollectionSchemaSupportedType;
 
     /** Schemas of the object properties. Use when `type` is 'object'. */
     properties?: {[property: string]: DataCollectionSchema};
@@ -19,14 +19,18 @@ export interface DataCollectionSchema {
     items?: {[property: string]: DataCollectionSchema};
 
     /** Extra configuration options to be shown when the collection is selected. */
-    extraConfigOptions?: Array<{
-        name: string;
-        displayName: string;
-        description?: string;
-        type: string;
-        options?: Array<{name: string; value: string}>;
-        defaultValue?: any;
-        editor?: string;
-        hideCondition?: string; // JavaScript expression to be evaluated, e.g. `config.url && config.altText`
-    }>;
+    extraConfigOptions?: Array<DataColectionExtraConfigOptionSchema>;
 }
+
+export interface DataColectionExtraConfigOptionSchema {
+    name: string;
+    displayName: string;
+    description?: string;
+    type: string;
+    options?: Array<{name: string; value: string}>;
+    defaultValue?: any;
+    editor?: string;
+    hideCondition?: string; // JavaScript expression to be evaluated, e.g. `config.url && config.altText`
+}
+
+export type DataCollectionSchemaSupportedType = 'string' | 'number' | 'boolean' | 'date' | 'array' | 'object' | 'asset' | 'image' | 'video' | 'location';
