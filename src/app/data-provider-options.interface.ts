@@ -2,6 +2,13 @@ import {AppContext} from "./app-context.interface";
 import {DataCollectionSchema} from "./data-collection-schema.interface";
 
 export interface DataProviderOptions<Settings = any> {
+
+    /**
+     * List of available collections. Also see `getCollections` and `getCollectionDetails` for
+     * dynamically providing collections.
+     */
+    collections?: DataCollectionSchema[];
+
     /**
      * Set to show a different label than "Collection" (e.g. "Data Type", "Content Type", "Base", "Model").
      */

@@ -1,5 +1,4 @@
 import {AppContext} from "./app-context.interface";
-import {DataCollectionSchema} from "./data-collection-schema.interface";
 import {DataProviderOptions} from "./data-provider-options.interface";
 import {EditorOptions} from "../editor/editor-registration-info.interface";
 
@@ -37,8 +36,7 @@ export interface AppInitContext<Settings = any> {
      * @param options Additional options.
      * @returns true, if the registration succeeded.
      */
-    registerDataProvider: (dataProviderId: string, name: string, collectionSchemas: DataCollectionSchema[],
-                           options?: DataProviderOptions) => boolean;
+    registerDataProvider: (dataProviderId: string, name: string, options?: DataProviderOptions) => boolean;
 
     /**
      * Details for requests that can be made server-side.

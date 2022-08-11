@@ -20,6 +20,12 @@ export interface DataCollectionSchema {
 
     /** Extra configuration options to be shown when the collection is selected. */
     extraConfigOptions?: Array<DataColectionExtraConfigOptionSchema>;
+
+    /**
+     * Indicates whether the collection supports pagination. If true, pagination specific configuration
+     * fields are automatically shown in the admin configuration panel.
+     */
+    pagination?: boolean;
 }
 
 export interface DataColectionExtraConfigOptionSchema {
