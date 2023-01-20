@@ -16,7 +16,7 @@ export interface DataCollectionSchema {
     properties?: {[property: string]: DataCollectionSchema};
 
     /** Schema of array items. use when `type` is 'array'. */
-    items?: {[property: string]: DataCollectionSchema};
+    items?: Pick<DataCollectionSchema, 'type' | 'properties' | 'items'>;
 
     /** Extra configuration options to be shown when the collection is selected. */
     extraConfigOptions?: Array<DataColectionExtraConfigOptionSchema>;
